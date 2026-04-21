@@ -1,0 +1,406 @@
+/* 
+  Miles Portfolio - Premium Metro UI Style
+*/
+
+:root {
+    --bg-color: #f7f7f4;
+    --text-primary: #111111;
+    --text-secondary: #5f5f5f;
+    --gap: 16px;
+    --border-radius: 0px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: 'Outfit', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    overflow-x: hidden;
+}
+
+/* Metro Grid Container */
+.metro-container {
+    display: grid;
+    /* Default Desktop (4 columns) */
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 220px;
+    gap: var(--gap);
+    grid-auto-flow: dense;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* Base Tile Styling */
+.tile {
+    position: relative;
+    background-color: var(--base-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    cursor: default;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: tileEntrance 0.6s ease forwards;
+}
+
+.tile:hover {
+    outline: 2px solid #111111;
+    z-index: 10;
+}
+
+/* Tile Content */
+.tile-content {
+    position: relative;
+    z-index: 2;
+    padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.center-content {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Metro Grid Sizes */
+.tile-small {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+.tile-medium {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.tile-wide {
+    grid-column: span 3;
+    grid-row: span 1;
+}
+
+.tile-tall {
+    grid-column: span 1;
+    grid-row: span 2;
+}
+
+.tile-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+/* Specific Tile Customizations */
+
+/* Hero Tile */
+.hero-tile {
+    grid-column: span 2;
+    grid-row: span 2;
+    background-color: transparent !important;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('miles.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.75) saturate(1.1);
+    transition: transform 0.8s ease, filter 0.5s ease;
+    z-index: 0;
+}
+
+.hero-tile:hover .hero-bg {
+    filter: brightness(0.68) saturate(1.2);
+}
+
+.hero-content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    background: rgba(255, 255, 255, 0.78);
+    color: var(--text-primary);
+}
+
+.hero-info {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Wallet Widget */
+.wallet-widget {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 12px 18px;
+    border-radius: 14px;
+    cursor: pointer;
+    text-align: right;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border 0.2s ease;
+    backdrop-filter: blur(8px);
+}
+
+.wallet-widget:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 8px 25px rgba(156, 39, 176, 0.2);
+    border: 1px solid rgba(156, 39, 176, 0.6);
+}
+
+.wallet-widget:active {
+    transform: scale(0.95);
+}
+
+.wallet-balance {
+    font-size: 1.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    color: #b388ff; /* Vibrant Purple */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.wallet-address {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    font-family: monospace;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+}
+
+.hero-name {
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    margin-bottom: 1rem;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    background: #111111;
+    color: #ffffff;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0;
+    font-size: 0.8rem;
+    font-weight: 700;
+    align-self: flex-start;
+    border: none;
+}
+
+.pulse {
+    width: 8px;
+    height: 8px;
+    background-color: #00e676;
+    margin-right: 8px;
+}
+
+/* Headers & Text */
+.tile-header {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.tile p {
+    font-weight: 300;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+.tile-icon {
+    font-size: 2.5rem;
+    margin-bottom: auto;
+}
+
+.tile-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.tile-desc {
+    margin-bottom: 1rem;
+}
+
+/* Specific Tile Customizations */
+.about-tile p {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+.community-tile .tile-title {
+    font-size: 1.8rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    font-weight: 900;
+}
+
+/* Rotated Header Tile */
+.rotated-header {
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: 4px;
+    opacity: 0.3;
+    transform: rotate(-90deg);
+}
+
+/* Social & Contact Tile */
+.social-links-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.social-links-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
+    max-width: 260px;
+    align-self: center;
+    margin-bottom: 10px;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f2f2ef;
+    border: none;
+    color: #111111;
+    text-decoration: none;
+    min-height: 56px;
+    padding: 12px;
+    border-radius: 0;
+    font-weight: 700;
+    transition: background-color 0.2s;
+    font-size: 1.4rem;
+}
+
+.social-btn:hover {
+    background: #e4e4df;
+}
+
+.unified-handle {
+    margin-top: auto;
+    font-size: 0.85rem;
+    color: #b0005a;
+    font-weight: 800;
+    text-align: center;
+    letter-spacing: 0.5px;
+    padding-top: 10px;
+}
+
+/* Animations */
+@keyframes tileEntrance {
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Responsive adjustments */
+/* Ultrawide Desktop */
+@media (min-width: 1300px) {
+    .metro-container {
+        grid-template-columns: repeat(5, 1fr);
+        grid-auto-rows: 240px;
+        max-width: 1500px;
+    }
+}
+
+/* Tablet / Smaller Desktop */
+@media (max-width: 1024px) {
+    .metro-container {
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: 180px;
+        max-width: 900px;
+    }
+
+    .tile-wide {
+        grid-column: span 2;
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+    .metro-container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: minmax(160px, auto);
+    }
+
+    .tile-wide {
+        grid-column: span 2;
+    }
+
+    .tile-large {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+    
+}
+
+/* Specific Small Screen Mobile */
+@media (max-width: 480px) {
+    .metro-container {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+    }
+
+    .tile-wide,
+    .tile-medium,
+    .tile-large {
+        grid-column: span 1;
+        grid-row: auto;
+        min-height: 200px;
+    }
+
+    .hero-tile {
+        min-height: 300px;
+    }
+
+    .social-links-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: 260px;
+    }
+
+    .social-btn {
+        min-height: 52px;
+        font-size: 1.25rem;
+    }
+}
