@@ -1,283 +1,881 @@
+/*
+  0xOmo Portfolio — Metro UI
+  Rewrite: fixed hero overlay, new tiles, new content styles
+*/
+
 :root {
-    --bg: #0a0a0c;
-    --card-bg: #111114;
-    --purple: #836efb;
-    --purple-glow: rgba(131, 110, 251, 0.3);
-    --text-main: #ffffff;
-    --text-dim: #a1a1aa;
-    --accent: #00ffa3;
-    --font-main: 'Inter', sans-serif;
-    --font-heading: 'Space Grotesk', sans-serif;
+    --bg-color: #f0ede8;
+    --text-primary: #111111;
+    --text-secondary: #5a5a5a;
+    --accent: #6c3fff;
+    --accent-soft: #f4ecff;
+    --gap: 14px;
+    --radius: 0px;
 }
 
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
-    background-color: var(--bg);
-    color: var(--text-main);
-    font-family: var(--font-main);
-    line-height: 1.6;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: 'Outfit', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem;
     overflow-x: hidden;
 }
 
-.glow-bg {
-    position: fixed;
+/* ─── Metro Grid ─────────────────────────────────────────── */
+
+.metro-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 220px;
+    gap: var(--gap);
+    grid-auto-flow: dense;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem 0;
+}
+
+/* ─── Base Tile ──────────────────────────────────────────── */
+
+.tile {
+    position: relative;
+    background-color: var(--base-color);
+    overflow: hidden;
+    cursor: default;
+    transition: outline 0.15s ease, transform 0.2s ease;
+    opacity: 0;
+    transform: translateY(18px);
+    animation: tileEntrance 0.55s ease forwards;
+}
+
+.tile:hover {
+    outline: 2px solid var(--text-primary);
+    z-index: 10;
+}
+
+.tile-content {
+    position: relative;
+    z-index: 2;
+    padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.center-content {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* ─── Tile Size Classes ──────────────────────────────────── */
+
+.tile-small  { grid-column: span 1; grid-row: span 1; }
+.tile-wide   { grid-column: span 2; grid-row: span 1; }
+.tile-tall   { grid-column: span 1; grid-row: span 2; }
+.tile-large  { grid-column: span 2; grid-row: span 2; }
+
+/* ─── Hero Tile ──────────────────────────────────────────── */
+
+.hero-tile {
+    background-color: #111 !important;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('miles.jpg');
+    background-size: cover;
+    background-position: center top;
+    filter: brightness(0.8) saturate(1.1);
+    transition: transform 0.8s ease, filter 0.5s ease;
+    z-index: 0;
+}
+
+.hero-tile:hover .hero-bg {
+    filter: brightness(0.65) saturate(1.2);
+    transform: scale(1.02);
+}
+
+/* Gradient overlay — replaces the magenta debug bg */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.82) 0%,
+        rgba(0, 0, 0, 0.3) 50%,
+        rgba(0, 0, 0, 0.05) 100%
+    );
+    z-index: 1;
+}
+
+.hero-content {
+    justify-content: flex-end;
+    color: #ffffff;
+}
+
+.hero-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    align-self: flex-start;
+    backdrop-filter: blur(8px);
+    margin-bottom: 0.5rem;
+}
+
+.pulse-dot {
+    width: 7px;
+    height: 7px;
+    background: #00e676;
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse 1.8s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+.pulse-dot.green {
+    background: #00e676;
+}
+
+.hero-name {
+    font-size: 3.4rem;
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 1;
+    color: #ffffff;
+}
+
+.hero-subtitle {
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.65);
+    letter-spacing: 1px;
+}
+
+/* ─── About Tile ─────────────────────────────────────────── */
+
+.about-tile .tile-header {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+}
+
+.about-tile p {
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--text-primary);
+}
+
+/* ─── Stack Tile ─────────────────────────────────────────── */
+
+.stack-tile {
+    /* dark tile */
+}
+
+.tile-label-light {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 0.75rem;
+}
+
+.stack-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+}
+
+.pill {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.85);
+    padding: 4px 10px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+/* ─── Availability Tile ──────────────────────────────────── */
+
+.avail-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.avail-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--text-primary);
+    text-transform: uppercase;
+}
+
+.role-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+}
+
+.role-tag {
+    background: var(--text-primary);
+    color: #ffffff;
+    padding: 4px 9px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* ─── ProofForge Tile ────────────────────────────────────── */
+
+.proofforge-tile {
+    /* dark tile */
+}
+
+/* Subtle dot-grid background */
+.pf-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(108, 63, 255, 0.25) 1px, transparent 1px);
+    background-size: 22px 22px;
+    z-index: 0;
+    opacity: 0.6;
+}
+
+.proofforge-tile .tile-content {
+    justify-content: flex-end;
+}
+
+.project-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+}
+
+.project-eyebrow.light {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.project-name {
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+    line-height: 1.05;
+    color: #ffffff;
+    margin-bottom: 0.75rem;
+}
+
+.project-name.light {
+    color: #ffffff;
+    font-size: 2rem;
+}
+
+.project-desc {
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+.project-desc.light {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.project-stack-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 1rem;
+}
+
+.tech-tag {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.75);
+    padding: 3px 8px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.tech-tag.light {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--accent);
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: color 0.2s;
+    align-self: flex-start;
+}
+
+.project-link:hover {
+ 
+  Miles Portfolio - Premium Metro UI Style
+*/
+
+:root {
+    --bg-color: #f7f7f4;
+    --text-primary: #111111;
+    --text-secondary: #5f5f5f;
+    --gap: 16px;
+    --border-radius: 0px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: 'Outfit', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    overflow-x: hidden;
+}
+
+/* Metro Grid Container */
+.metro-container {
+    display: grid;
+    /* Default Desktop (4 columns) */
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 220px;
+    gap: var(--gap);
+    grid-auto-flow: dense;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* Base Tile Styling */
+.tile {
+    position: relative;
+    background-color: var(--base-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    cursor: default;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: tileEntrance 0.6s ease forwards;
+}
+
+.tile:hover {
+    outline: 2px solid #111111;
+    z-index: 10;
+}
+
+/* Tile Content */
+.tile-content {
+    position: relative;
+    z-index: 2;
+    padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.center-content {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Metro Grid Sizes */
+.tile-small {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+.tile-medium {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.tile-wide {
+    grid-column: span 3;
+    grid-row: span 1;
+}
+
+.tile-tall {
+    grid-column: span 1;
+    grid-row: span 2;
+}
+
+.tile-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+/* Specific Tile Customizations */
+
+/* Hero Tile */
+.hero-tile {
+    grid-column: span 2;
+    grid-row: span 2;
+    background-color: transparent !important;
+}
+
+.hero-bg {
+    position: absolute;
     top: 0;
+    color: #9b7fff;
+}
+
+/* ─── World of Nads Tile ─────────────────────────────────── */
+
+.won-tile {
+    /* deep purple tile */
+}
+
+.won-glow {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(200, 100, 255, 0.35) 0%, transparent 70%);
+    z-ind;
+    pointer-events: none;
+}
+
+.won-tile .tile-content {
+    justify-content: flex-end;
+}
+
+/* ─── Community Tile ─────────────────────────────────────── */
+
+.community-tile .tile-title {
+    font-size: 1.6rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 0.85rem;
+    color: var(--text-primary);
+}
+
+.tile-desc {
+    font-size: 0.88rem;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+}
+
+.community-stat {
+    margin-top: auto;
+    margin-bottom: 0.75rem;
+}
+
+.stat-num {
+    display: block;
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.community-platforms {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.platform-tag {
+    background: rgba(108, 63, 255, 0.12);
+    color: var(--accent);
+    padding: 3px 9px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* ─── Connect Tile ───────────────────────────────────────── */
+
+.connect-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    text-align: center;
+}
+
+.social-links-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    width: 100%;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f2f2ef;
+    color: var(--text-primary);
+    text-decoration: none;
+    min-height: 52px;
+    font-size: 1.3rem;
+    transition: background 0.15s, color 0.15s;
+}
+
+.social-btn:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 50% -20%, var(--purple-glow), transparent 70%);
-    pointer-events: none;
-    z-index: -1;
+    background-image: url('miles.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.75) saturate(1.1);
+    transition: transform 0.8s ease, filter 0.5s ease;
+    z-index: 0;
 }
 
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 2rem;
+.hero-tile:hover .hero-bg {
+    filter: brightness(0.68) saturate(1.2);
 }
 
-/* Header */
-header {
-    display: flex;
+.hero-content {
+    flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-    padding: 2.5rem 0;
+    align-items: flex-end;
+    background: rgba(255, 0, 255, 0.3);
+    color: #ffffff;
 }
 
-.brand {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: -1px;
-}
-
-.brand .dot {
-    color: var(--purple);
-}
-
-.status-pill {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 0.5rem 1rem;
-    border-radius: 100px;
-    font-size: 0.75rem;
-    font-weight: 600;
+.hero-info {
     display: flex;
+    flex-direction: column;
+}
+
+/* Wallet Widget */
+.wallet-widget {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 12px 18px;
+    border-radius: 14px;
+    cursor: pointer;
+    text-align: right;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border 0.2s ease;
+    backdrop-filter: blur(8px);
+}
+
+.wallet-widget:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 8px 25px rgba(156, 39, 176, 0.2);
+    border: 1px solid rgba(156, 39, 176, 0.6);
+}
+
+.wallet-widget:active {
+    transform: scale(0.95);
+}
+
+.wallet-balance {
+    font-size: 1.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    color: #b388ff; /* Vibrant Purple */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.wallet-address {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    font-family: monospace;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+}
+
+.hero-name {
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    margin-bottom: 1rem;
+}
+
+.status-badge {
+    display: inline-flex;
     align-items: center;
-    gap: 10px;
+    background: #111111;
+    color: #ffffff;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0;
+    font-size: 0.8rem;
+    font-weight: 700;
+    align-self: flex-start;
+    border: none;
 }
 
 .pulse {
     width: 8px;
     height: 8px;
-    background: var(--accent);
-    border-radius: 50%;
-    box-shadow: 0 0 10px var(--accent);
-    animation: pulse-anim 2s infinite;
-}
-
-@keyframes pulse-anim {
-    0% { transform: scale(0.9); opacity: 1; }
-    70% { transform: scale(1.2); opacity: 0.4; }
-    100% { transform: scale(0.9); opacity: 1; }
-}
-
-/* Hero */
-.hero {
-    padding: 4rem 0;
-    max-width: 800px;
-}
-
-.badge {
-    display: inline-block;
-    background: var(--purple-glow);
-    color: var(--purple);
-    padding: 0.25rem 0.75rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-h1 {
-    font-family: var(--font-heading);
-    font-size: clamp(3rem, 8vw, 5rem);
-    line-height: 1.1;
-    margin-bottom: 2rem;
-    letter-spacing: -3px;
-}
-
-.gradient-text {
-    background: linear-gradient(90deg, var(--purple), #c084fc);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.hero p {
-    font-size: 1.25rem;
-    color: var(--text-dim);
-    margin-bottom: 3rem;
-    max-width: 600px;
-}
-
-.cta-group {
-    display: flex;
-    gap: 1rem;
-}
-
-.btn {
-    text-decoration: none;
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: all 0.2s ease;
-}
-
-.btn.primary {
-    background: var(--purple);
-    color: white;
-}
-
-.btn.primary:hover {
-    background: #705afb;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(131, 110, 251, 0.2);
-}
-
-.btn.secondary {
-    background: rgba(255, 255, 255, 0.05);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.btn.secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-/* Terminal */
-.terminal-section {
-    margin: 4rem 0;
-    background: #000;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    overflow: hidden;
-    font-family: 'Courier New', Courier, monospace;
-}
-
-.terminal-header {
-    background: #1a1a1e;
-    padding: 0.75rem 1rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.dots {
-    display: flex;
-    gap: 6px;
-}
-
-.dots span {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #333;
-}
-
-.terminal-title {
-    font-size: 0.75rem;
-    color: var(--text-dim);
-}
-
-.terminal-body {
-    padding: 1.5rem;
-    font-size: 0.9rem;
-    color: #d1d1d1;
-    min-height: 180px;
-}
-
-.prompt {
-    color: var(--purple);
+    background-color: #00e676;
     margin-right: 8px;
 }
 
-.success { color: var(--accent); }
-
-/* Grid */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 6rem;
-}
-
-.card {
-    background: var(--card-bg);
-    padding: 2.5rem;
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: border-color 0.3s ease;
-}
-
-.card:hover {
-    border-color: var(--purple);
-}
-
-.card-icon {
-    font-size: 2rem;
-    color: var(--purple);
-    margin-bottom: 1.5rem;
-}
-
-.card h3 {
-    font-family: var(--font-heading);
+/* Headers & Text */
+.tile-header {
     font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.tile p {
+    font-weight: 300;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+.tile-icon {
+    font-size: 2.5rem;
+    margin-bottom: auto;
+}
+
+.tile-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.tile-desc {
     margin-bottom: 1rem;
 }
 
-.card p {
-    color: var(--text-dim);
-    font-size: 0.95rem;
+/* Specific Tile Customizations */
+.about-tile p {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    font-weight: 300;
 }
 
-/* Footer */
-footer {
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 4rem 0;
+.community-tile .tile-title {
+    font-size: 1.8rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    font-weight: 900;
 }
 
-.footer-content {
+/* Rotated Header Tile */
+.rotated-header {
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: 4px;
+    opacity: 0.3;
+    transform: rotate(-90deg);
+}
+
+/* Social & Contact Tile */
+.social-links-vertical {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.social-links-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
+    max-width: 260px;
+    align-self: center;
+    margin-bottom: 10px;
+}
+
+.social-btn {
+    display: flex;
     align-items: center;
-    color: var(--text-dim);
-    font-size: 0.9rem;
+    justify-content: center;
+    background: #f2f2ef;
+    border: none;
+    color: #111111;
+    text-decoration: none;
+    min-height: 56px;
+    padding: 12px;
+    border-radius: 0;
+    font-weight: 700;
+    transition: background-color 0.2s;
+    font-size: 1.4rem;
 }
 
-.social-links {
-    display: flex;
-    gap: 1.5rem;
-    font-size: 1.2rem;
+.social-btn:hover {
+    background: #e4e4df;
 }
 
-.social-links a {
-    color: var(--text-dim);
-    transition: color 0.2s;
+.unified-handle {
+    margin-top: auto;
+    font-size: 0.85rem;
+    color: #b0005a;
+    font-weight: 800;
+    text-align: center;
+    letter-spacing: 0.5px;
+    padding-top: 10px;
 }
 
-.social-links a:hover {
-    color: var(--purple);
+/* Animations */
+@keyframes tileEntrance {
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Responsive adjustments */
+/* Ultrawide Desktop */
+@media (min-width: 1300px) {
+    .metro-container {
+        grid-template-columns: repeat(5, 1fr);
+        grid-auto-rows: 240px;
+        max-width: 1500px;
+    }
+}
+
+/* Tablet / Smaller Desktop */
+@media (max-width: 1024px) {
+    .metro-container {
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: 180px;
+        max-width: 900px;
+    }
+
+    .tile-wide {
+        grid-column: span 2;
+    }
+}
+
+/* Mobile Devices */
 @media (max-width: 768px) {
-    header { padding: 1.5rem 0; }
-    .hero { padding: 2rem 0; }
-    .footer-content { flex-direction: column; gap: 2rem; text-align: center; }
+    .metro-container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: minmax(160px, auto);
+    }
+
+    .tile-wide {
+        grid-column: span 2;
+    }
+
+    .tile-large {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+    
+}
+
+/* Specific Small Screen Mobile */
+@media (max-width: 480px) {
+    .metro-container {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+    }
+
+    .tile-wide,
+    .tile-medium,
+    .tile-large {
+        grid-column: span 1;
+        grid-row: auto;
+        min-height: 200px;
+    }
+
+    .hero-tile {
+        min-height: 300px;
+    }
+
+    .social-links-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: 260px;
+    }
+
+    .social-btn {
+        min-height: 52px;
+        font-size: 1.25rem;
+    }
 }
