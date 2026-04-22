@@ -1,10 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Staggered tile entrance — shuffled for organic feel
+    // Metro UI Staggered Entrance Animation
     const tiles = document.querySelectorAll('.tile');
-
-    const shuffled = Array.from(tiles).sort(() => 0.5 - Math.random());
-
-    shuffled.forEach((tile, index) => {
-        tile.style.animationDelay = `${index * 0.08}s`;
+    
+    // Shuffle the array to make the pop-in feel more organic and less linear
+    const shuffledTiles = Array.from(tiles).sort(() => 0.5 - Math.random());
+    
+    shuffledTiles.forEach((tile, index) => {
+        // Add staggered delay to each tile
+        tile.style.animationDelay = `${index * 0.1}s`;
     });
 });
