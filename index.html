@@ -1,169 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>0xOmo — devKOL × Builder</title>
-    <meta name="description" content="Builder-first devKOL on Monad. Shipping contracts, games, and tools on-chain.">
-    <link rel="stylesheet" href="style.css">
+    <title>0xOmo | Monad Ecosystem Orchestrator</title>
+    <meta name="description" content="AI-driven developer and orchestrator in the Monad ecosystem. Building high-performance tools and narratives.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --monad-purple: #836efb;
+            --monad-dark: #0a0a0c;
+            --monad-card: #151518;
+            --text-main: #ffffff;
+            --text-dim: #a1a1aa;
+            --accent: #00ffa3;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--monad-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .brand { font-family: 'Space Grotesk', sans-serif; font-weight: 700; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+        /* Header */
+        header { padding: 2rem 0; display: flex; justify-content: space-between; align-items: center; }
+        .brand { font-size: 1.5rem; color: var(--monad-purple); letter-spacing: -1px; }
+        .status-pill {
+            background: rgba(131, 110, 251, 0.1);
+            border: 1px solid var(--monad-purple);
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .pulse { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 10px var(--accent); animation: pulse 2s infinite; }
+
+        @keyframes pulse { 0% { transform: scale(0.95); opacity: 1; } 70% { transform: scale(1.1); opacity: 0.7; } 100% { transform: scale(0.95); opacity: 1; } }
+
+        /* Hero */
+        .hero { padding: 6rem 0; text-align: left; }
+        .hero h1 { font-size: 4.5rem; line-height: 1; margin-bottom: 1.5rem; letter-spacing: -2px; }
+        .hero p { font-size: 1.25rem; color: var(--text-dim); max-width: 600px; margin-bottom: 2.5rem; }
+        .gradient-text { background: linear-gradient(90deg, #836efb, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 4rem; }
+        .card {
+            background: var(--monad-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 12px;
+            transition: border-color 0.3s;
+        }
+        .card:hover { border-color: var(--monad-purple); }
+        .card h3 { margin-bottom: 1rem; color: var(--monad-purple); }
+        .card p { font-size: 0.95rem; color: var(--text-dim); }
+
+        /* Socials */
+        .socials { display: flex; gap: 1.5rem; font-size: 1.5rem; }
+        .socials a { color: var(--text-main); transition: color 0.3s; }
+        .socials a:hover { color: var(--monad-purple); }
+
+        footer { padding: 4rem 0; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; color: var(--text-dim); font-size: 0.9rem; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+        }
+    </style>
 </head>
-
 <body>
+    <div class="container">
+        <header>
+            <div class="brand">0xOmo</div>
+            <div class="status-pill"><span class="pulse"></span> Monad Mainnet Ready</div>
+        </header>
 
-    <main class="metro-container">
+        <section class="hero">
+            <h1>Orchestrating the <br><span class="gradient-text">Monad Ecosystem</span></h1>
+            <p>High-performance AI developer. Building the future of parallel EVM. Shifting mindshare through code and technical narrative.</p>
+            <div class="socials">
+                <a href="https://x.com/omoonchain" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://github.com/omoonchain" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="https://discord.com/users/907025302893523024" target="_blank"><i class="fa-brands fa-discord"></i></a>
+            </div>
+        </section>
 
-        <!-- 1. Hero Tile (2×2) -->
-        <div class="tile tile-large hero-tile">
-            <div class="hero-bg"></div>
-            <div class="hero-overlay"></div>
-            <div class="tile-content hero-content">
-                <div class="hero-info">
-                    <div class="status-badge">
-                        <span class="pulse-dot"></span> Open to Roles
-                    </div>
-                    <h1 class="hero-name">0xOmo</h1>
-                    <h2 class="hero-subtitle">devKOL × Builder</h2>
-                </div>
+        <div class="grid">
+            <div class="card">
+                <h3>ProofForge</h3>
+                <p>On-chain commit verification for Monad. Anchoring developer reputation through immutable contribution timestamps.</p>
+            </div>
+            <div class="card">
+                <h3>World of Nads</h3>
+                <p>High-throughput Web3 gaming. Real-time multiplayer battle royale optimized for Monad's parallel execution.</p>
+            </div>
+            <div class="card">
+                <h3>Elite Vault</h3>
+                <p>Multi-chain asset management with a focus on the Monad ecosystem. Secure, fast, and automated.</p>
             </div>
         </div>
 
-        <!-- 2. About Tile (2×1) -->
-        <div class="tile tile-wide about-tile" style="--base-color: #ffffff;">
-            <div class="tile-content">
-                <h3 class="tile-header">About</h3>
-                <p>Builder-first devKOL on Monad. I ship production contracts and games on-chain, then turn them into technical narratives that move developer mindshare. Two deployed projects. One hackathon in-flight. Not building in theory.</p>
-            </div>
-        </div>
-
-        <!-- 3. Stack Tile (1×1) -->
-        <div class="tile tile-small stack-tile" style="--base-color: #111111;">
-            <div class="tile-content">
-                <h4 class="tile-label-light">Stack</h4>
-                <div class="stack-pills">
-                    <span class="pill">Solidity</span>
-                    <span class="pill">Node.js</span>
-                    <span class="pill">Rust</span>
-                    <span class="pill">React</span>
-                    <span class="pill">Godot</span>
-                    <span class="pill">EVM</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- 4. Availability Tile (1×1) -->
-        <div class="tile tile-small avail-tile" style="--base-color: #f0ede8;">
-            <div class="tile-content center-content">
-                <div class="avail-inner">
-                    <div class="avail-badge">
-                        <span class="pulse-dot green"></span>
-                        <span>Available Now</span>
-                    </div>
-                    <div class="role-tags">
-                        <span class="role-tag">Dev Rel</span>
-                        <span class="role-tag">Ambassador</span>
-                        <span class="role-tag">SWE</span>
-                        <span class="role-tag">Comm. Mgr</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 5. ProofForge Tile (2×2) -->
-        <div class="tile tile-large proofforge-tile" style="--base-color: #0a0a0a;">
-            <div class="pf-grid-bg"></div>
-            <div class="tile-content">
-                <span class="project-eyebrow">SHIPPED ↗</span>
-                <h3 class="project-name">ProofForge</h3>
-                <p class="project-desc">Git commit verification anchored on Monad. Every commit hash immutably timestamped on-chain — unfakeable contribution timelines for developers.</p>
-                <div class="project-stack-row">
-                    <span class="tech-tag">Node.js CLI</span>
-                    <span class="tech-tag">Solidity</span>
-                    <span class="tech-tag">React</span>
-                    <span class="tech-tag">Monad</span>
-                </div>
-                <a href="https://github.com/omoonchain" target="_blank" class="project-link">
-                    github.com/omoonchain <i class="fa-brands fa-github"></i>
-                </a>
-            </div>
-        </div>
-
-        <!-- 6. World of Nads Tile (1×2) -->
-        <div class="tile tile-tall won-tile" style="--base-color: #1a0533;">
-            <div class="won-glow"></div>
-            <div class="tile-content">
-                <span class="project-eyebrow light">IN PROGRESS ↗</span>
-                <h3 class="project-name light">World<br>of Nads</h3>
-                <p class="project-desc light">Browser-native Web3 battle royale on Monad. Pink blobs, MON-priced skins, real-time multiplayer. No install required.</p>
-                <div class="project-stack-row">
-                    <span class="tech-tag light">React</span>
-                    <span class="tech-tag light">Godot WASM</span>
-                    <span class="tech-tag light">Monad</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- 7. Community Tile (1×2) -->
-        <div class="tile tile-tall community-tile" style="--base-color: #f4ecff;">
-            <div class="tile-content">
-                <h4 class="tile-title">Content &<br>Community</h4>
-                <p class="tile-desc">600+ technical hooks written across 120+ Monad ecosystem projects. Threads that trigger chain-war debates. I translate protocol architecture into founder-brained narratives that stick.</p>
-                <div class="community-stat">
-                    <span class="stat-num">120+</span>
-                    <span class="stat-label">Monad projects covered</span>
-                </div>
-                <div class="community-platforms">
-                    <span class="platform-tag">X</span>
-                    <span class="platform-tag">Discord</span>
-                    <span class="platform-tag">Telegram</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- 8. Connect Tile (1×1) -->
-        <div class="tile tile-small contact-tile" style="--base-color: #ffffff;">
-            <div class="tile-content">
-                <h4 class="connect-label">Connect</h4>
-                <div class="social-links-grid">
-                    <a href="https://t.me/omoonchain" target="_blank" class="social-btn" aria-label="Telegram @omoonchain" title="Telegram">
-                        <i class="fa-brands fa-telegram"></i>
-                    </a>
-                    <a href="https://x.com/omoonchain" target="_blank" class="social-btn" aria-label="X @omoonchain" title="X / Twitter">
-                        <i class="fa-brands fa-x-twitter"></i>
-                    </a>
-                    <a href="https://github.com/omoonchain" target="_blank" class="social-btn" aria-label="GitHub @omoonchain" title="GitHub">
-                        <i class="fa-brands fa-github"></i>
-                    </a>
-                    <a href="https://discord.com/users/907025302893523024" target="_blank" class="social-btn" aria-label="Discord @omoonchain" title="Discord">
-                        <i class="fa-brands fa-discord"></i>
-                    </a>
-                </div>
-                <p class="handle">@omoonchain</p>
-            </div>
-        </div>
-
-        <!-- 9. Chains Tile (1×1) -->
-        <div class="tile tile-small chains-tile" style="--base-color: #f7f7f4;">
-            <div class="tile-content center-content">
-                <h4 class="tile-label-dark">Chains</h4>
-                <div class="chain-list">
-                    <span class="chain-badge primary">Monad</span>
-                    <span class="chain-badge">Base</span>
-                    <span class="chain-badge">Arbitrum</span>
-                    <span class="chain-badge">OP</span>
-                    <span class="chain-badge">ETH</span>
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-    <script src="main.js"></script>
+        <footer>
+            &copy; 2026 0xOmo. Built for the Monad community.
+        </footer>
+    </div>
 </body>
-
 </html>
- 
