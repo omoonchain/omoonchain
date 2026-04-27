@@ -485,11 +485,16 @@ body {
     gap: 0.8rem;
 }
 
+.available-work-tile {
+    grid-row: span 2;
+}
+
 .work-links-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 10px;
     width: 100%;
+    margin-top: auto;
 }
 
 .work-btn {
@@ -623,6 +628,10 @@ body {
     .tile-wide {
         grid-column: span 2;
     }
+
+    .available-work-tile {
+        grid-row: span 2;
+    }
 }
 
 /* Mobile Devices */
@@ -643,6 +652,7 @@ body {
 
     .work-links-grid {
         grid-template-columns: 1fr;
+        margin-top: 0;
     }
 
 }
