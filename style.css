@@ -239,6 +239,7 @@ body {
 .about-tile {
     color: #ffffff;
     background-color: transparent;
+    grid-row: span 2;
 }
 
 .about-bg {
