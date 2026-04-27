@@ -140,7 +140,7 @@ body {
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(255, 0, 128, 0.692));
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 255, 128, 0.692));
     color: white;
 }
 
