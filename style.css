@@ -1,4 +1,5 @@
 :root {
+    color-scheme: light dark;
     --bg-color: #f4f1ea;
     --surface: #ffffff;
     --surface-muted: #fbf8f2;
@@ -11,6 +12,13 @@
     --gap: 16px;
     --border-radius: 18px;
     --tile-shadow: 0 14px 40px rgba(28, 21, 13, 0.08);
+    --tile-hover-shadow: 0 18px 50px rgba(28, 21, 13, 0.12);
+    --tile-neutral: var(--surface);
+    --tile-soft: #f8f4ed;
+    --tile-accent: #f4ecff;
+    --tile-brand: #9900ff;
+    --social-hover-border: rgba(155, 125, 86, 0.38);
+    --social-hover-shadow: 0 10px 22px rgba(28, 21, 13, 0.08);
 }
 
 * {
@@ -63,7 +71,7 @@ body {
 
 .tile:hover {
     transform: translateY(-4px);
-    box-shadow: 0 18px 50px rgba(28, 21, 13, 0.12);
+    box-shadow: var(--tile-hover-shadow);
     border-color: rgba(155, 125, 86, 0.35);
     z-index: 10;
 }
@@ -468,7 +476,7 @@ body {
 }
 
 .pill {
-    background-color: #f2e8db;
+    background-color: var(--surface-alt);
     border-radius: 50px;
     padding: 8px;
     margin: 8px;
@@ -537,7 +545,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--surface);
     border: 1px solid var(--border-color);
     color: var(--text-primary);
     text-decoration: none;
@@ -549,11 +557,40 @@ body {
     font-size: 1.4rem;
 }
 
+.connect-title {
+    color: color-mix(in srgb, var(--text-secondary) 90%, transparent);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #0e1016;
+        --surface: #161a22;
+        --surface-muted: #1b2029;
+        --surface-alt: #252b36;
+        --border-color: #2c3442;
+        --text-primary: #f3f5f7;
+        --text-secondary: #bcc6d5;
+        --accent: #c9a16a;
+        --accent-soft: #2a2f3a;
+        --tile-shadow: 0 14px 40px rgba(0, 0, 0, 0.42);
+        --tile-hover-shadow: 0 18px 50px rgba(0, 0, 0, 0.5);
+        --tile-soft: #20232d;
+        --tile-accent: #221f31;
+        --social-hover-border: rgba(201, 161, 106, 0.5);
+        --social-hover-shadow: 0 10px 22px rgba(0, 0, 0, 0.3);
+    }
+
+    body {
+        background:
+            radial-gradient(circle at top, rgba(42, 48, 62, 0.72), rgba(20, 23, 31, 0.94) 42%, rgba(10, 12, 19, 1) 100%);
+    }
+}
+
 .social-btn:hover {
     background: var(--surface-muted);
-    border-color: rgba(155, 125, 86, 0.38);
+    border-color: var(--social-hover-border);
     transform: translateY(-2px);
-    box-shadow: 0 10px 22px rgba(28, 21, 13, 0.08);
+    box-shadow: var(--social-hover-shadow);
 }
 
 @media (prefers-reduced-motion: reduce) {
