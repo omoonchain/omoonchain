@@ -157,6 +157,7 @@ body {
     letter-spacing: -1px;
     line-height: 1;
     margin-bottom: 0.5rem;
+    color: #ffffff;
 }
 
 .hero-subtitle {
@@ -164,6 +165,7 @@ body {
     font-weight: 500;
     line-height: 1.4;
     margin-bottom: 0.6rem;
+    color: #ffffff;
 }
 
 .availability-indicator {
