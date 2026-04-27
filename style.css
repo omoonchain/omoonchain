@@ -163,7 +163,27 @@ body {
     font-size: 1rem;
     font-weight: 500;
     line-height: 1.4;
-    margin-bottom: 1rem;
+    margin-bottom: 0.6rem;
+}
+
+.availability-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.25rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(17, 17, 17, 0.3);
+    color: #ffffff;
+    font-size: 0.78rem;
+    font-weight: 500;
+    width: fit-content;
+}
+
+.availability-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: #00e676;
 }
 
 .status-badge {
@@ -461,6 +481,23 @@ body {
     font-weight: 900;
 }
 
+.available-work-tile .tile-content {
+    gap: 0.8rem;
+}
+
+.work-links-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
+}
+
+.work-btn {
+    min-height: 46px;
+    font-size: 0.92rem;
+    border-radius: 12px;
+}
+
 /* Rotated Header Tile */
 .rotated-header {
     font-size: 2.5rem;
@@ -604,6 +641,10 @@ body {
         grid-row: span 2;
     }
 
+    .work-links-grid {
+        grid-template-columns: 1fr;
+    }
+
 }
 
 /* Specific Small Screen Mobile */
@@ -633,6 +674,10 @@ body {
     .social-btn {
         min-height: 52px;
         font-size: 1.25rem;
+    }
+
+    .work-btn {
+        font-size: 0.9rem;
     }
 
 }
