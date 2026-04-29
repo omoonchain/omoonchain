@@ -1,12 +1,17 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // Metro UI Staggered Entrance Animation
-    const tiles = document.querySelectorAll('.tile');
-    
-    // Shuffle the array to make the pop-in feel more organic and less linear
-    const shuffledTiles = Array.from(tiles).sort(() => 0.5 - Math.random());
-    
-    shuffledTiles.forEach((tile, index) => {
-        // Add staggered delay to each tile
-        tile.style.animationDelay = `${index * 0.1}s`;
-    });
+document.addEventListener('DOMContentLoaded', () => {
+  const cards = document.querySelectorAll('.card, .hero');
+  cards.forEach((card, i) => {
+    card.animate(
+      [
+        { opacity: 0, transform: 'translateY(14px)' },
+        { opacity: 1, transform: 'translateY(0)' }
+      ],
+      {
+        duration: 450,
+        delay: i * 80,
+        easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)',
+        fill: 'forwards'
+      }
+    );
+  });
 });
