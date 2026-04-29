@@ -1,16 +1,16 @@
 :root {
     color-scheme: light dark;
-    --bg-color: #f4f1ea;
+    --bg-color: #f3efff;
     --surface: #ffffff;
-    --surface-muted: #fbf8f2;
-    --surface-alt: #f2ede5;
-    --border-color: #e4ddd2;
-    --text-primary: #111111;
-    --text-secondary: #5f5b53;
-    --accent: #9b7d56;
-    --accent-soft: #ede4d8;
-    --gap: 16px;
-    --border-radius: 18px;
+    --surface-muted: #f3ecff;
+    --surface-alt: #ece1ff;
+    --border-color: #ccb7ff;
+    --text-primary: #2a174f;
+    --text-secondary: #5d3f96;
+    --accent: #7b3ff2;
+    --accent-soft: #f0e8ff;
+    --gap: 10px;
+    --border-radius: 0px;
     --tile-shadow: 0 14px 40px rgba(28, 21, 13, 0.08);
     --tile-hover-shadow: 0 18px 50px rgba(28, 21, 13, 0.12);
     --tile-neutral: var(--surface);
@@ -37,7 +37,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    padding: 1rem;
     overflow-x: hidden;
 }
 
@@ -80,7 +80,7 @@ body {
 .tile-content {
     position: relative;
     z-index: 2;
-    padding: 1.5rem;
+    padding: 1rem;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -181,7 +181,7 @@ body {
     align-items: center;
     gap: 0.4rem;
     padding: 0.25rem 0.55rem;
-    border-radius: 999px;
+    border-radius: 0;
     background: rgba(17, 17, 17, 0.3);
     color: #ffffff;
     font-size: 0.78rem;
@@ -192,7 +192,7 @@ body {
 .availability-dot {
     width: 7px;
     height: 7px;
-    border-radius: 999px;
+    border-radius: 0;
     background: #00e676;
 }
 
@@ -202,7 +202,7 @@ body {
     background: #111111;
     color: #ffffff;
     padding: 0.4rem 0.8rem;
-    border-radius: 999px;
+    border-radius: 0;
     font-size: 0.8rem;
     font-weight: 700;
     align-self: flex-start;
@@ -255,7 +255,7 @@ body {
 .about-bg {
     position: absolute;
     inset: 0;
-    background-image: url('banner.jpg');
+    background-image: linear-gradient(160deg, rgba(123, 63, 242, 0.92), rgba(46, 18, 94, 0.92));
     background-size: cover;
     background-position: center;
     z-index: 0;
@@ -356,7 +356,7 @@ body {
     gap: 0.5rem;
     background: rgba(0, 0, 0, 0.24);
     border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 16px;
+    border-radius: 0;
     padding: 0.2rem 0.25rem;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
@@ -411,7 +411,7 @@ body {
     display: inline-flex;
     align-items: center;
     padding: 0.2rem 0.45rem;
-    border-radius: 999px;
+    border-radius: 0;
     font-size: 0.56rem;
     font-weight: 800;
     letter-spacing: 0.02em;
@@ -421,14 +421,14 @@ body {
 }
 
 .project-status-live {
-    background: #8a2be2;
-    border: 1px solid #6f1fc1;
+    background: #7b3ff2;
+    border: 1px solid #5f2ec2;
     color: #ffffff;
 }
 
 .project-status-dev {
-    background: #f97316;
-    border: 1px solid #ea580c;
+    background: #8b5cf6;
+    border: 1px solid #6d3fd6;
     color: #ffffff;
 }
 
@@ -438,7 +438,7 @@ body {
     height: 58px;
     aspect-ratio: 1 / 1;
     object-fit: cover;
-    border-radius: 16px;
+    border-radius: 0;
     border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 8px 16px rgba(30, 0, 51, 0.16);
     flex-shrink: 0;
@@ -472,12 +472,12 @@ body {
 
 .stack-pills {
     background-color: var(--accent-soft);
-    border-radius: 25px;
+    border-radius: 0;
 }
 
 .pill {
     background-color: var(--surface-alt);
-    border-radius: 50px;
+    border-radius: 0;
     padding: 8px;
     margin: 8px;
     color: var(--text-primary);
@@ -511,7 +511,7 @@ body {
 .work-btn {
     min-height: 46px;
     font-size: 0.92rem;
-    border-radius: 12px;
+    border-radius: 0;
 }
 
 /* Rotated Header Tile */
@@ -551,7 +551,7 @@ body {
     text-decoration: none;
     min-height: 56px;
     padding: 12px;
-    border-radius: 16px;
+    border-radius: 0;
     font-weight: 700;
     transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     font-size: 1.4rem;
@@ -563,19 +563,19 @@ body {
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --bg-color: #0e1016;
-        --surface: #161a22;
-        --surface-muted: #1b2029;
-        --surface-alt: #252b36;
-        --border-color: #2c3442;
-        --text-primary: #f3f5f7;
-        --text-secondary: #bcc6d5;
-        --accent: #c9a16a;
-        --accent-soft: #2a2f3a;
+        --bg-color: #110a22;
+        --surface: #1a102e;
+        --surface-muted: #24163d;
+        --surface-alt: #2e1d4f;
+        --border-color: #55308a;
+        --text-primary: #f0e9ff;
+        --text-secondary: #c2a8f6;
+        --accent: #bb94ff;
+        --accent-soft: #2a1945;
         --tile-shadow: 0 14px 40px rgba(0, 0, 0, 0.42);
         --tile-hover-shadow: 0 18px 50px rgba(0, 0, 0, 0.5);
-        --tile-soft: #20232d;
-        --tile-accent: #221f31;
+        --tile-soft: #25163d;
+        --tile-accent: #2f1c52;
         --social-hover-border: rgba(201, 161, 106, 0.5);
         --social-hover-shadow: 0 10px 22px rgba(0, 0, 0, 0.3);
     }
