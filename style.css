@@ -1,21 +1,39 @@
 :root {
-  --bg: #080b14;
-  --panel: #101728;
-  --panel-2: #151f33;
-  --line: #2f3b59;
-  --text: #f4f7ff;
-  --muted: #b8c2dc;
-  --accent: #7c5cff;
-  --accent-2: #1dd6a5;
-  --shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  --bg: #f5f7ff;
+  --bg-gradient: radial-gradient(circle at 20% 0%, #ffffff 0%, #f5f7ff 55%);
+  --panel: #ffffff;
+  --line: #d7def0;
+  --text: #0c1224;
+  --muted: #4b5b80;
+  --accent: #5b3df3;
+  --accent-2: #067f62;
+  --card-bg: linear-gradient(145deg, rgba(255,255,255,.96), rgba(255,255,255,.92));
+  --shadow: 0 16px 32px rgba(22, 34, 68, 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #080b14;
+    --bg-gradient: radial-gradient(circle at 20% 0%, #1a2340 0%, #080b14 55%);
+    --panel: #101728;
+    --line: #2f3b59;
+    --text: #f4f7ff;
+    --muted: #b8c2dc;
+    --accent: #7c5cff;
+    --accent-2: #1dd6a5;
+    --card-bg: linear-gradient(145deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+    --shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  }
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+html { color-scheme: light dark; }
+
 body {
   min-height: 100vh;
   font-family: 'Outfit', sans-serif;
-  background: radial-gradient(circle at 20% 0%, #1a2340 0%, var(--bg) 55%);
+  background: var(--bg-gradient);
   color: var(--text);
   padding: 2rem 1rem;
 }
@@ -28,7 +46,7 @@ body {
 }
 
 .card, .hero {
-  background: linear-gradient(145deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+  background: var(--card-bg);
   border: 1px solid var(--line);
   border-radius: 20px;
   box-shadow: var(--shadow);
